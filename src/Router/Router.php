@@ -4,14 +4,31 @@ namespace App\Router;
 
 class Router
 {
-   public function dispatch()
+    private array $routes = [
+        'GET' => [],
+        'POST' => []
+    ];
+    public function __construct()
+    {
+        $this->initRoutes();
+        dd($this->routes);
+    }
+   public function dispatch(string $uri,string $method)
    {
          $routes = $this->getRoutes();
-         $uri = $_SERVER['REQUEST_URI'];
-         $routes[$uri]();
+         $routes[$uri][$method]();
    }
+  
    private function getRoutes()
    {
             return require_once APP_ROOT . '/config/routes.php';
+   }
+   private function initRoutes()
+   {
+       $routes = $this->getRoutes();
+       foreach($routes as $route)
+       {
+           $this->routes[$route->getMethod()][$route->getUri()] = $route->getAction();
+       }
    }
 }
