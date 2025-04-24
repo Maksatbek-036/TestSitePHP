@@ -1,8 +1,12 @@
 <?php
 use App\Router\Route;
 return[
-Route::get('/home', function(){
+'/home'=> function(){
    include_once APP_ROOT . '/views/pages/home.php';
-}),
+},
+'/movies'=> function(){
+   
+   include_once APP_ROOT . '/views/pages/home.php';
+}
 
 ];
