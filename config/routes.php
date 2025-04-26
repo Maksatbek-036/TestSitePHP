@@ -1,12 +1,11 @@
 <?php
 use App\Router\Route;
+use App\Controllers\HomeController;
+use App\Controllers\MoviesController;
 return[
-'/home'=> function(){
-   include_once APP_ROOT . '/views/pages/home.php';
-},
-'/movies'=> function(){
-   
-   include_once APP_ROOT . '/views/pages/home.php';
-}
+Route::get('/home',[HomeController::class ,'index']),
 
+Route::get('/movies',[MoviesController::class ,'index']),
+Route::get('/test',function(){
+   echo 'test';}),
 ];
