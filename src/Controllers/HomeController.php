@@ -4,7 +4,7 @@ class HomeController
 {
     public function index()
     {
-        include_once APP_ROOT . '/views\pages\home.php';
+        include_once APP_ROOT . '\views\pages\home.php';
     }
    
 }

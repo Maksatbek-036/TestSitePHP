@@ -56,6 +56,7 @@ public function __construct(){
         foreach ($routes as $route) {
             $this->routes[$route->getMethod()][$route->getUri()] = $route;
         }
+        dd($this->routes);
    }
    private function notFound()
    {
