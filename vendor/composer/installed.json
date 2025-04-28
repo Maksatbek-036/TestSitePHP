@@ -313,6 +313,9 @@
     ],
     "dev": true,
     "dev-package-names": [
-        "laravel/pint"
+        "laravel/pint",
+        "symfony/deprecation-contracts",
+        "symfony/polyfill-mbstring",
+        "symfony/var-dumper"
     ]
 }

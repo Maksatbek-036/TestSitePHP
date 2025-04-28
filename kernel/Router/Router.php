@@ -1,19 +1,24 @@
 <?php
 
-namespace App\Router;
-use App\Router\Route;
+namespace App\Kernel\Router;
+use App\Kernel\Router\Route;
+use App\Kernel\View\View;
 
 class Router
 {
   private array $routes = [
         'GET' => [],
         'POST' => []
-       
   ];
 
-public function __construct(){
-        $this->initRoutes();
-}
+  private View $view;
+
+  public function __construct(
+      View $view
+  ){
+      $this->view = $view;
+      $this->initRoutes();
+  }
    public function dispatch(string $uri,string $method)
    {
     $route=$this->findRoute($uri,$method);
@@ -26,12 +31,15 @@ public function __construct(){
 
         if (is_array($route->getAction())){
             [$controller,$action] =$route->getAction();
+
+            /** @var Controller $controller */
             $controller = new $controller();
+            call_user_func([$controller,'setView'], $this->view);
     call_user_func([$controller,$action]);
           
            } 
         else{ 
-            call_user_func($route->getAction()());}
+            call_user_func($route->getAction());}
        
     }
    
@@ -56,7 +64,7 @@ public function __construct(){
         foreach ($routes as $route) {
             $this->routes[$route->getMethod()][$route->getUri()] = $route;
         }
-        dd($this->routes);
+        
    }
    private function notFound()
    {

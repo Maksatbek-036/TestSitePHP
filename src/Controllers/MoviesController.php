@@ -2,7 +2,9 @@
 
 namespace App\Controllers;
 
-class MoviesController
+use App\Kernel\Controller\Controller;
+
+class MoviesController extends Controller
 {
     public function index()
     {

@@ -1,10 +1,15 @@
 <?php
 namespace App\Controllers;
-class HomeController
+use App\Kernel\View\View;
+use App\Kernel\Controller\Controller;
+
+class HomeController extends Controller
 {
     public function index()
     {
-        include_once APP_ROOT . '\views\pages\home.php';
+        $view=new View('home');
+        $view->page('home');
+
+       
     }
-   
 }
