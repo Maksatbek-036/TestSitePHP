@@ -3,6 +3,7 @@
 namespace App\Kernel\Router;
 use App\Kernel\Router\Route;
 use App\Kernel\View\View;
+use App\Kernel\Controller\Controller;
 
 class Router
 {
@@ -34,7 +35,7 @@ class Router
 
             /** @var Controller $controller */
             $controller = new $controller();
-            call_user_func([$controller,'setView'], $this->view);
+            call_user_func( [$controller,'setView'], $this->view);
     call_user_func([$controller,$action]);
           
            } 

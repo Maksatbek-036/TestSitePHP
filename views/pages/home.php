@@ -1,13 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Page</title>
-</head>
-<body>
-   
-    <h1>Welcome to the Home Page</h1>
-    <p>This is the home page of the test site.</p>
-</body>
-</html>
+<?php $view->component('header'); ?>
+
+
+    <main>
+        <div class="container">
+            <h2>Популярные товары</h2>
+            <div class="products">
+                <?php 
+                for ($i = 0; $i < 9; $i++) {
+                    $view->component('product');
+                }
+                ?>
+            </div>
+
+            <section class="reviews">
+                <h2>Отзывы наших клиентов</h2>
+                <div class="review">
+                    <p><strong>Иван:</strong> Отличный магазин, товары качественные!</p>
+                </div>
+                <div class="review">
+                    <p><strong>Мария:</strong> Быстрая доставка, рекомендую!</p>
+                </div>
+                <div class="review">
+                    <p><strong>Алексей:</strong> Хороший выбор товаров, буду заказывать еще.</p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <?php 
+
+ $view->component('footer'); ?>
