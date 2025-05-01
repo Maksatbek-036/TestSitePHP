@@ -12,6 +12,9 @@ class CatalogController extends Controller
         $view=new View();
         $view->page('catalog');
     }
-
+public function add(){
+$view=new View();
+    $view->page('admin/add');
+}
    
 }
