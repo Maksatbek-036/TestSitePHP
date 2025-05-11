@@ -17,7 +17,20 @@ class DataBase implements DataBaseInterface
     }
     public function insert(string $table, array $data): int|false
     {
-        return false;
+        $fields=array_keys($data);
+        $collums=implode(',', $fields);
+        $binds=implode(',', array_map(fn($field) => ":$field", $fields));
+        $sql = "INSERT INTO $table ($collums) VALUES ($binds)";
+        dd([$fields], $collums, $binds);
+        $stmt=$this->pdo->prepare($sql);
+        dd($stmt);
+        try{
+            $stmt->execute($data);
+        }
+        catch (\PDOException $e){
+            return false;
+        }
+        dd($stmt);
     }
     public function connect()
     {

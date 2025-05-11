@@ -13,12 +13,12 @@ class CatalogController extends Controller
 
     public function index()
     {
-    
+
         $this->view('catalog');
     }
     public function add()
     {
-      
+
         $this->view('admin/add');
     }
     public function store()
@@ -29,12 +29,15 @@ class CatalogController extends Controller
         ]);
 
         if (! $validation) {
-foreach ($this->request()->errors() as $field => $error) {
+            foreach ($this->request()->errors() as $field => $error) {
                 $this->session()->set($field, $error);
             }
             $this->redirect()->to('/admin/catalog/add');
 
-            
+            $id = $this->db()->insert('catalog', [
+                'name' => $this->request()->input('name'),
+            ]);
+            dd('d   one');
         }
     }
 }

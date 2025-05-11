@@ -2,13 +2,15 @@
 
 namespace App\Kernel\Controller;
 
+use App\Kernel\DataBase\DataBase;
+use App\Kernel\DataBase\DataBaseInterface;
 use App\Kernel\Http\RedirectInterface;
 
 use App\Kernel\Http\RequestInterface;
 
 use App\Kernel\View\ViewInterface;
 use App\Kernel\Session\SessionInterface;
-
+use Symfony\Component\VarDumper\Cloner\Data;
 
 abstract class Controller
 {
@@ -16,6 +18,7 @@ abstract class Controller
     private RequestInterface $request;
     private RedirectInterface $redirect;
     private SessionInterface $session;
+    private DataBaseInterface $db;
 
     public function view(string $name): void
     {
@@ -49,5 +52,13 @@ abstract class Controller
     public function session(): SessionInterface
     {
         return $this->session;
+    }
+    public function setDb(DataBaseInterface $db): void
+    {
+        $this->db = $db;
+    }
+    public function db(): DataBaseInterface
+    {
+        return $this->db;
     }
 }
