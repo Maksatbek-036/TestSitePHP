@@ -2,21 +2,32 @@
 
 namespace App\Kernel\View;
 
-class View
+use App\Kernel\Session\SessionInterface;
+use App\Kernel\View\ViewInterface;
+
+
+class View implements ViewInterface
 {
-    public function __construct(){}
+    public function __construct(
+        private SessionInterface $session,
+    ) {}
     public function page(string $name)
     {
-      extract(
-        [
-            'view' => $this]
-        );
-include_once APP_ROOT . '/views/pages/' . $name . '.php';
+extract($this->defaultData());
+        include_once APP_ROOT . '/views/pages/' . $name . '.php';
     }
     public function component(string $name)
     {
-        
+
         include_once APP_ROOT . '/views/components/' . $name . '.php';
     }
- 
+
+    private function defaultData()
+    {
+       return [
+           
+        
+            'view' => $this,
+            'session' => $this->session];
+    }
 }

@@ -1,13 +1,14 @@
 <?php
 namespace App\Kernel\Validator;
-class Validator
+class Validator implements ValidatorInterface
 {
 
     private array $errors = [];
-    private array $data = [];
+    private array $data ;
     public function validate(array $data, array $rules): bool
     {
         $this->errors = [];
+        $this->data= $data;
         foreach ($rules as $key => $rule) {
             $rules = $rule;
             foreach ($rules as $rule) {
@@ -22,33 +23,36 @@ class Validator
         }
         return empty($this->errors);
     }
+    public function errors(): array
+    {
+        return $this->errors;
+    }
 
     public function validateRule(string $key, string $ruleName, mixed $ruleValue): string|false
     {
-        $value = $this->data[$key] ?? null;
+        $value = $this->data[$key] ;
         switch ($ruleName) {
             case 'required':
                 if (empty($value)) {
-                    return "$key is required";
+                    return "Field $key is required";
                 }
                 break;
             case 'email':
                 if (!filter_var($value, FILTER_VALIDATE_EMAIL)) {
-                    return "$key must be a valid email address";
+                    return "Field $key must be a valid email address";
                 }
                 break;
             case 'min':
                 if (strlen($value) < $ruleValue) {
-                    return "$key must be at least $ruleValue characters long";
+                    return "Field $key must be at least $ruleValue characters long";
                 }
                 break;
             case 'max':
                 if (strlen($value) > $ruleValue) {
-                    return "$key must be at most $ruleValue characters long";
+                    return "Fieald $key must be at most $ruleValue characters long";
                 }
                 break;
-            default:
-                return false;
+           
         }
         return false;
     }

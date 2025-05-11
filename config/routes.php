@@ -21,7 +21,7 @@ return [
    Route::get('/order', [OrderController::class, 'index']),
    Route::get('/contacts', [ContactController::class, 'index']),
    Route::get('/admin/catalog/add', [CatalogController::class, 'add']),
-   Route::post('/admin/add', [CatalogController::class, 'store']),
+   Route::post('/admin/catalog/add', [CatalogController::class, 'store']),
 
 
 ];

@@ -7,8 +7,8 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $view=new View();
-        $view->page('home');
+       
+        $this->view('home');
 
        
     }

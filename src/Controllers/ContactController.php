@@ -8,7 +8,7 @@ class ContactController extends Controller
 {
     public function index()
     {
-     $view=new View();
-     $view->page('contacts');
+    
+     $this->view('contacts');
     }
 }

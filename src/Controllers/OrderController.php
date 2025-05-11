@@ -8,7 +8,6 @@ class OrderController extends Controller
 {
     public function index()
     {
-     $view=new View();
-     $view->page('order');
+        $this->view('order');
     }
 }

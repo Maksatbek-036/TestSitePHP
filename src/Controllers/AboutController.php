@@ -8,7 +8,6 @@ class AboutController extends Controller
 {
     public function index()
     {
-     $view=new View();
-     $view->page('about');
+        $this->view('about');
     }
 }
