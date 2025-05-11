@@ -34,7 +34,7 @@ foreach ($this->request()->errors() as $field => $error) {
             }
             $this->redirect()->to('/admin/catalog/add');
 
-            dd('validation failed', $this->request()->errors());
+            
         }
     }
 }
