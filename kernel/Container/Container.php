@@ -1,5 +1,7 @@
 <?php
+
 namespace App\Kernel\Container;
+
 use App\Kernel\Http\Request;
 use App\Kernel\Router\Router;
 use App\Kernel\View\View;
@@ -17,9 +19,6 @@ class Container
     {
         $this->request = Request::createFromGlobals();
         $this->view = new View();
-        $this->router = new Router($this->view);
-
+        $this->router = new Router($this->view, $this->request);
     }
 }
-
-?>

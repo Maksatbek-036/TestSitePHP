@@ -27,8 +27,8 @@ class Request
    {
       return $this->server['REQUEST_METHOD'] ;
    }
-   public function post(string $key): mixed
+   public function input(string $key,$default=null): mixed
    {
-      return $this->post[$key] ?? null;
+      return $this->post[$key] ?? $this->get[$key] ?? $default;
    }
 }
