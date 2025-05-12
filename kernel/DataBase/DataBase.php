@@ -8,29 +8,30 @@ use PDO;
 
 class DataBase implements DataBaseInterface
 {
-    private PDO $pdo;
+     private PDO $pdo;
+   
     public function __construct(
         private ConfigInterface $config,
+
     )
     {
-       
+       $this->connect();
     }
     public function insert(string $table, array $data): int|false
     {
-        $fields=array_keys($data);
-        $collums=implode(',', $fields);
-        $binds=implode(',', array_map(fn($field) => ":$field", $fields));
-        $sql = "INSERT INTO $table ($collums) VALUES ($binds)";
-        dd([$fields], $collums, $binds);
+      $fields=array_keys($data);
+      $columns=implode(',', $fields);
+      $binds=implode(',', array_map(fn($field) => ":$field", $fields));
+      $sql="INSERT INTO $table ($columns) VALUES ($binds)";
+
+ 
         $stmt=$this->pdo->prepare($sql);
-        dd($stmt);
-        try{
+        try {
             $stmt->execute($data);
-        }
-        catch (\PDOException $e){
+        } catch (\PDOException $th) {
             return false;
         }
-        dd($stmt);
+        return (int)$this->pdo->lastInsertId();
     }
     public function connect()
     {
@@ -42,8 +43,8 @@ class DataBase implements DataBaseInterface
         $password = $this->config->get('database.password');
         $charset = $this->config->get('database.charset');
         $this->pdo = new PDO(
-             "$driver:host=$host;port=$port;dbname=$db;charset=$charset",
-             $username,$password
+            "$driver:host=$host;port=$port;dbname=$db;charset=$charset",
+            $username,$password
             );
             
            

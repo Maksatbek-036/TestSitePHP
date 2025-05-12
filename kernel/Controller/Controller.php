@@ -2,7 +2,7 @@
 
 namespace App\Kernel\Controller;
 
-use App\Kernel\DataBase\DataBase;
+
 use App\Kernel\DataBase\DataBaseInterface;
 use App\Kernel\Http\RedirectInterface;
 
@@ -10,7 +10,7 @@ use App\Kernel\Http\RequestInterface;
 
 use App\Kernel\View\ViewInterface;
 use App\Kernel\Session\SessionInterface;
-use Symfony\Component\VarDumper\Cloner\Data;
+
 
 abstract class Controller
 {

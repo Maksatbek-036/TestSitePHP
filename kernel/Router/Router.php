@@ -8,7 +8,7 @@ use App\Kernel\Controller\Controller;
 use App\Kernel\Http\Request;
 use App\Kernel\Session\Session;
 use App\Kernel\Http\Redirect;
-
+USE App\Kernel\DataBase\Database;
 
 
 class Router implements RouterInterface
@@ -23,7 +23,8 @@ class Router implements RouterInterface
         private View $view,
         private Request $request,
         private Redirect $redirect,
-        private Session $session
+        private Session $session,
+        private Database $db
     ) {
         $this->view = $view;
         $this->initRoutes();
@@ -47,6 +48,7 @@ class Router implements RouterInterface
             call_user_func([$controller, 'setRequest'], $this->request);
             call_user_func([$controller, 'setRedirect'], $this->redirect);
             call_user_func([$controller, 'setSession'], $this->session);
+            call_user_func([$controller, 'setDb'], $this->db);
             call_user_func([$controller, $action]);
         } else {
             call_user_func($route->getAction());

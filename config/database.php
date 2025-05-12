@@ -2,8 +2,11 @@
 return [
     'driver' => 'mysql',
     'host' => 'localhost',
-    'dbname' => 'catalog',
+    'port' => 3306,
+    'db' => 'database',
     'username' => 'root',
     'password' => '',
     'charset' => 'utf8mb4',
+
+    
 ];

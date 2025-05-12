@@ -10,7 +10,7 @@
 
 <div class="container">
     <h1>Add New Item</h1>
-    <form action="/admin/catalog/add" method="post">
+    <form action="admin/catalog/add" method="post">
         <input type="text" name="name">
 <?php if ($session->has('name')) {?>
 <ul>

@@ -6,6 +6,7 @@ use App\Controllers\HomeController;
 use App\Controllers\CatalogController;
 use App\Controllers\ContactController;
 use App\Controllers\OrderController;
+use App\Controllers\RegisterController;
 
 return [
    Route::get('/home', [HomeController::class, 'index']),
@@ -22,6 +23,9 @@ return [
    Route::get('/contacts', [ContactController::class, 'index']),
    Route::get('/admin/catalog/add', [CatalogController::class, 'add']),
    Route::post('/admin/catalog/add', [CatalogController::class, 'store']),
+   Route::get('/register', [RegisterController::class, 'index']),
+   Route::post('/register', [RegisterController::class, 'register']),
+
 
 
 ];

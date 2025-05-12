@@ -14,7 +14,7 @@ class CatalogController extends Controller
     public function index()
     {
 
-        $this->view('catalog');
+        $this->view('admin/catalog');
     }
     public function add()
     {
@@ -35,9 +35,10 @@ class CatalogController extends Controller
             $this->redirect()->to('/admin/catalog/add');
 
             $id = $this->db()->insert('catalog', [
-                'name' => $this->request()->input('name'),
+                'name' => $this->request()->input('name')
             ]);
-            dd('d   one');
-        }
+            dd($id);
+            
+            }
     }
 }
