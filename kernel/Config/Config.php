@@ -7,14 +7,13 @@ class Config implements ConfigInterface
  public function get(string $key, $default=null)
  {
     [$file, $key] = explode('.', $key);
-    $configPath = APP_ROOT . '\config\\' . $file . '.php';
-    if (! file_exists($configPath)) {
-        return $default;
-    }
-    if (!file_exists($configPath)) {
+    $configPath = APP_ROOT . "\config\\$file.php";
+    $config = require_once $configPath;
+    if(! file_exists($configPath)){
         return $default;
     }
     $config = require $configPath;
     return $config[$key] ?? $default;
+    
  }
 }

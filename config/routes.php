@@ -4,6 +4,7 @@ use App\Controllers\AboutController;
 use App\Kernel\Router\Route;
 use App\Controllers\HomeController;
 use App\Controllers\CatalogController;
+use App\Controllers\LoginController;
 use App\Controllers\ContactController;
 use App\Controllers\OrderController;
 use App\Controllers\RegisterController;
@@ -25,6 +26,8 @@ return [
    Route::post('/admin/catalog/add', [CatalogController::class, 'store']),
    Route::get('/register', [RegisterController::class, 'index']),
    Route::post('/register', [RegisterController::class, 'register']),
+   Route::get('/login', [LoginController::class, 'index']),
+   Route::post('/login', [LoginController::class, 'authenticate']),
 
 
 

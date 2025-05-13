@@ -1,10 +1,10 @@
 <?php 
 return [
-    'driver' => 'mysql',
+  'driver' => 'mysql',
     'host' => 'localhost',
-    'port' => 3306,
-    'db' => 'database',
-    'username' => 'root',
+    'port' => '3306',
+    'dbname' => 'catalog',
+    'user' =>'root',
     'password' => '',
     'charset' => 'utf8mb4',
 

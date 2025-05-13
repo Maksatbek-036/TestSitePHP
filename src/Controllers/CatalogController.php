@@ -14,7 +14,7 @@ class CatalogController extends Controller
     public function index()
     {
 
-        $this->view('admin/catalog');
+        $this->view('catalog');
     }
     public function add()
     {
@@ -22,7 +22,11 @@ class CatalogController extends Controller
         $this->view('admin/add');
     }
     public function store()
+    
     {
+        $file=$this->request()->file('image');
+        
+        dd($file->move('catalog'));
 
         $validation = $this->request()->validate([
             'name' => ['required', 'min:3', 'max:25'],
@@ -37,7 +41,7 @@ class CatalogController extends Controller
             $id = $this->db()->insert('catalog', [
                 'name' => $this->request()->input('name')
             ]);
-            dd($id);
+           
             
             }
     }
