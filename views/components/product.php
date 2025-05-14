@@ -1,6 +1,6 @@
 <div class="product">
-               <a href="/products/cardproduct">     <img src="product2.jpg" alt="Товар 2">
-                    <h3>Товар 2</h3>
+                    <img src='test.webp' alt="Товар 2">
+                    <h3>Ноутбук Lenovo V15-82C3 Intel N4020 1.1-2.8GHz, 4GB DDR4, 1TB, 15.6" FHD, Iron Gray, Eng+Rus</h3>
                     <p>Описание товара 2</p>
                     <span class="price">1500 сом</span>
                     <button  >Купить</button>

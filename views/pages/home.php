@@ -23,6 +23,7 @@
                 <div class="review">
                     <p><strong>Алексей:</strong> Хороший выбор товаров, буду заказывать еще.</p>
                 </div>
+                
             </section>
         </div>
     </main>

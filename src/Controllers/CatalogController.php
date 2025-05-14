@@ -21,12 +21,10 @@ class CatalogController extends Controller
 
         $this->view('admin/add');
     }
-    public function store()
-    
-    {
+    public function store(){
         $file=$this->request()->file('image');
         
-        dd($file->move('catalog'));
+       dd($file->move('catalog','test.png'));
 
         $validation = $this->request()->validate([
             'name' => ['required', 'min:3', 'max:25'],
@@ -44,5 +42,9 @@ class CatalogController extends Controller
            
             
             }
+    }
+
+    public function create(){
+        $this->view('admin\createPr');
     }
 }

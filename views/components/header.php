@@ -1,3 +1,10 @@
+<?php
+/**
+ * @var App\Kernel\View\ViewInterface $view
+ */
+
+
+?>
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -7,11 +14,13 @@
     <link rel="stylesheet" href="..\..\css\styles.css">
 </head>
 <body>
+    
     <style>
         <?php
         include 'styles.css';  ?>
     </style>
     <header>
+       
         <div class="container">
             <h1>Мой Интернет-магазин</h1>
             <nav>
@@ -25,5 +34,6 @@
                 </ul>
             </nav>
         </div>
-    </header>
+         <?php $view->component('logout')?>
+    
     </header>

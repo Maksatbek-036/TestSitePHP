@@ -3,7 +3,7 @@
 namespace App\Kernel\Auth;
 
 use App\Kernel\Auth\AuthInterface;
-use App\Kernel\Config\Config;
+use App\Kernel\Auth\User;
 use App\Kernel\Config\ConfigInterface;
 use App\Kernel\Database\DataBaseInterface;
 use App\Kernel\Session\SessionInterface;
@@ -36,20 +36,37 @@ if (! password_verify($password,$user[$this->password()]))
 
     public function logout(): void
     {
-        // Implement logic to log out the user
+        $this->session->remove($this->sessionField());
     }
 
     public function check(): bool
     {
-        // Implement logic to check if a user is authenticated
-        return false;
+        return $this->session->has($this->sessionField());
     }
 
-    public function user(): ?array
-    {
-        // Implement logic to return the authenticated user's data
+public function user(): ?User
+{
+    if (! $this->check()) {
         return null;
     }
+
+    $user = $this->db->first($this->table(), [
+        'id' => $this->session->get($this->sessionField())
+    ]);
+
+    if ($user) {
+        return new User(
+            $user['id'],
+            $user[$this->username()],
+            $user[$this->password()]
+        );
+    }
+
+    return null;
+}
+     
+
+    
     public function table(): string
     {
         return $this->config->get('auth.table','users');

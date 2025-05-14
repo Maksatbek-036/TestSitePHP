@@ -2,8 +2,11 @@
 
 namespace App\Kernel\Http;
 
+use App\Kernel\Upload\Upload;
+use App\Kernel\Upload\UploadInterface;
 use App\Kernel\Validator\Validator;
 use App\Kernel\Validator\ValidatorInterface;
+
 
 class Request implements RequestInterface
 {
@@ -33,9 +36,20 @@ class Request implements RequestInterface
       return $this->post[$key] ?? $this->get[$key] ?? $default;
    }
 
-   public function file(string $key):?array
+   public function file(string $key):?UploadInterface
    {
-      return $this->files[$key] ?? null;
+      if (! isset($this->files[$key])){
+         return null;
+      }
+      return new Upload(
+         $this->files[$key]['name'],
+         $this->files[$key]['type'],
+         $this->files[$key]['tmp_name'],
+         $this->files[$key]['error'],
+         $this->files[$key]['size'],
+         
+
+      );
    }
 
 

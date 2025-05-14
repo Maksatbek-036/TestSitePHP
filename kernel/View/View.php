@@ -2,6 +2,7 @@
 
 namespace App\Kernel\View;
 
+use App\Kernel\Auth\AuthInterface;
 use App\Kernel\Session\SessionInterface;
 use App\Kernel\View\ViewInterface;
 
@@ -10,6 +11,7 @@ class View implements ViewInterface
 {
     public function __construct(
         private SessionInterface $session,
+        private AuthInterface $auth,
     ) {}
     public function page(string $name)
     {
@@ -18,8 +20,10 @@ extract($this->defaultData());
     }
     public function component(string $name)
     {
-
+extract($this->defaultData());
         include_once APP_ROOT . '/views/components/' . $name . '.php';
+
+
     }
 
     private function defaultData()
@@ -28,6 +32,9 @@ extract($this->defaultData());
            
         
             'view' => $this,
-            'session' => $this->session];
+            'session' => $this->session,
+            'auth'=>$this->auth,
+            
+            ];
     }
 }
