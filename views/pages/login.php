@@ -1,23 +1,28 @@
+<?php 
+
+/**
+* @var \App\Kernel\Session\SessionInterface $session;
+*/
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LOgin</title>
-    <link rel="stylesheet" href="/assets/css/style.css">
+    
 </head>
 <body>
     <div class="container">
         <h1>login</h1>
-        <form action="/login" method="POST">
-            <p>email</p>
+        <form action="/login" method="POST" >
             <?php if ($session->has('error')) {?>
-            <p style="color: red;">
-                <?php echo $session->getFlash('error') ?>
-            </p>
-            <?php }?>
-
-            <input type="email" name="email" >
+                <div><?php 
+                    echo $session->getFlash('error');
+                    ?></div>
+                <?php }?>
+           
+            <input type="text" name="email" >
             
             <p>password</p>
             

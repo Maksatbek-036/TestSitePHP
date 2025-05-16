@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 use App\Kernel\Controller\Controller;
-use App\Services\AuthService;
+
 
 class LoginController extends Controller
 {
@@ -15,8 +15,12 @@ class LoginController extends Controller
     {
        $email=$this->request()->input('email');
        $password=$this->request()->input('password');
-     $this->auth()->attempt($email,$password);
-     $this->redirect('/home');
+   if ($this->auth()->attempt($email,$password)){
+    $this->redirect()->to('/');
+   }
+$this->redirect()->to('/home');
+dd($email,$password);
+
     }
     public function logout(){
         $this->auth()->logout();

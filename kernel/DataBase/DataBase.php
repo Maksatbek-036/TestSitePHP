@@ -47,10 +47,10 @@ public function first(string $table, array $conditions = [])
         try {
             $stmt->execute($data);
         } catch (\PDOException $e) {
-            echo "Error: " . $e->getMessage();
+           dd($e);
             return false;
         }
-        return $this->pdo->lastInsertId();
+        return (int)$this->pdo->lastInsertId();
     }
 
 
@@ -60,7 +60,7 @@ public function first(string $table, array $conditions = [])
         $host = $this->config->get('database.host');
         $port = $this->config->get('database.port');
         $dbname = $this->config->get('database.dbname');
-        $user = $this->config->get('database.user');
+        $user = $this->config->get('database.username');
         $password = $this->config->get('database.password');
         $charset = $this->config->get('database.charset');
         $this->pdo = new PDO("$driver:host=$host;port=$port;dbname=$dbname;charset=$charset", $user, $password);

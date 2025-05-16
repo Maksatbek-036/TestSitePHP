@@ -7,7 +7,7 @@ use App\Kernel\DataBase\DataBaseInterface;
 use App\Kernel\Http\RedirectInterface;
 
 use App\Kernel\Http\RequestInterface;
-
+use App\Models\Product;
 use App\Kernel\View\ViewInterface;
 use App\Kernel\Session\SessionInterface;
 
@@ -25,6 +25,8 @@ abstract class Controller
     private DataBaseInterface $db;
 
     private AuthInterface $auth;
+
+     private Product $product; 
 
 
     public function view(string $name): void
@@ -75,5 +77,8 @@ abstract class Controller
     public function auth(): AuthInterface
     {
         return $this->auth;
+    }
+    public function pr(){
+        return $this->product;
     }
 }

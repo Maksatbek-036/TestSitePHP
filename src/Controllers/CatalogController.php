@@ -2,49 +2,49 @@
 
 namespace App\Controllers;
 
-use App\Kernel\View\View;
+
 use App\Kernel\Controller\Controller;
-use App\Kernel\Http\Redirect;
-use App\Kernel\Validator\Validator;
+use App\Models\Product;
 
 class CatalogController extends Controller
 {
-
+private Product $product;
 
     public function index()
     {
 
         $this->view('catalog');
     }
-    public function add()
-    {
-
-        $this->view('admin/add');
-    }
+  
     public function store(){
-        $file=$this->request()->file('image');
+
+       
+       $this->service()->store(
+          $name=  $this->request()->input('name'),
+            $this->request()->input('description'),
+            $this->request()->file('image'),
+            $this->request()->input('price')
+           );
         
-       dd($file->move('catalog','test.png'));
 
-        $validation = $this->request()->validate([
-            'name' => ['required', 'min:3', 'max:25'],
-        ]);
-
-        if (! $validation) {
-            foreach ($this->request()->errors() as $field => $error) {
-                $this->session()->set($field, $error);
-            }
-            $this->redirect()->to('/admin/catalog/add');
-
-            $id = $this->db()->insert('catalog', [
-                'name' => $this->request()->input('name')
-            ]);
+        
            
+dd('Добавлен '.$name);
+          
             
             }
+    
+    public function create(){
+        $this->view('admin/catalog');
+        
+       
+    }
+    public function service(){
+        if (! isset($this->product)){
+            $this->product=new Product($this->db());
+        }
+        return $this->product;
     }
 
-    public function create(){
-        $this->view('admin\createPr');
-    }
+ 
 }

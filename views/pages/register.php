@@ -1,3 +1,8 @@
+<?php 
+/**
+ * @var \App\Kernel\Session\SessionInterface;
+ */
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

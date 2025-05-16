@@ -21,6 +21,7 @@ use App\Kernel\View\ViewInterface;
 use App\Kernel\DataBase\DatabaseInterface;
 use App\Kernel\Config\Config;
 use App\Kernel\DataBase\Database;
+use App\Models\Product;
 
 class Container
 {
@@ -33,6 +34,7 @@ class Container
     public readonly DatabaseInterface $database;
     public readonly ConfigInterface $config;
     public readonly AuthInterface $auth;
+   
     public function __construct()
     {
         $this->registerServices();
@@ -43,12 +45,13 @@ class Container
         $this->validator = new Validator();
         $this->request->setValidator($this->validator);
         $this->redirect = new Redirect();
+// Pass the required argument to Product constructor, e.g. $this->database
+$this->session = new Session();
+$this->config = new Config();
+$this->database = new Database($this->config);
+$this->auth = new Auth($this->database, $this->session,$this->config);
+$this->view = new View($this->session,$this->auth);
 
-        $this->session = new Session();
-        $this->config = new Config();
-        $this->database = new Database($this->config);
-        $this->auth = new Auth($this->database, $this->session,$this->config);
-        $this->view = new View($this->session,$this->auth);
         $this->router = new Router(
             $this->view,
             $this->request,

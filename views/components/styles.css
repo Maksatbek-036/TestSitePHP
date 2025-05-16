@@ -17,14 +17,17 @@ header {
     color: #ffffff; /* Белый цвет */
     padding: 20px 0;
 }
-.logout{
+.isAuth{
     width: max-content;
-
+margin-inline: 25px;
     justify-items: left;
       
 
 }
-
+.description{
+    margin-inline:4px;
+    width: 90px;
+height: max-content;}
 header h1 {
     margin: 0;
 }
@@ -90,7 +93,7 @@ footer {
     padding: 10px 0;
     margin-top: 20px;
 }
-.logout button{
+.isAuth button{
 
     background-color: red;
     border-radius: 0.5em;

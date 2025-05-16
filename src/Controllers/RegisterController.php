@@ -25,12 +25,16 @@ class RegisterController extends Controller
             $this->redirect()->to('/register');
         }
         
-        $id= $this->db()->insert('users', [
+         $this->db()->insert('users', [
             'email' => $email=$this->request()->input('email'),
             'password' => $this->request()->input('password'),
         ]);
-      
-        
-        dd('User created with ID: '.$id);
+      $email = $this->request()->input('email');
+        $password = $this->request()->input('password');
+
+        if ($this->auth()->attempt($email, $password)) {
+            $this->redirect('/');
+        }
+    
     }
 }

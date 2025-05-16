@@ -11,14 +11,7 @@
     }
     ?>
        
-            <h2>Новинки</h2>
-            <div class="products">
-    <?php 
-
-    for ($i = 0; $i < 9; $i++) {
-        $view->component("product");
-    }
-    ?>
+           
 
                 
              
