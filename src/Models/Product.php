@@ -2,34 +2,34 @@
 
 namespace App\Models;
 
-use App\Kernel\DataBase\DataBaseInterface;
-use App\Kernel\Upload\UploadedFileInterface;
-
 class Product
 {
-  
-
-    // Constructor
     public function __construct(
-         private DataBaseInterface $db
+        private string $name,
+        private int $price,
+        private string $description,
+        private string $image
     )
     {
-      
+        
+    }
+    public function getName(): string
+    {
+        return $this->name;
     }
 
-   public function store(string $name, $description, UploadedFileInterface $image, int $price){
-$filePath=$image->move('image');
-    $id=$this->db->insert('products',[
-        'name'=>$name,
-        'price'=>$price,
-        'description'=>$description,
-        'image'=>$filePath
+    public function getPrice(): int
+    {
+        return $this->price;
+    }
 
-    ]);
-    return $id;
-   }
-   public function news() {
-    
-    
-   }
+    public function getDescription(): string
+    {
+        return $this->description;
+    }
+
+    public function getImage(): string
+    {
+        return $this->image;
+    }
 }

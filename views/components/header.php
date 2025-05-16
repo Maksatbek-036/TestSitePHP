@@ -33,6 +33,6 @@
                 </ul>
             </nav>
         </div>
-         <?php $view->component('isAuth')?>
+        
     
     </header>

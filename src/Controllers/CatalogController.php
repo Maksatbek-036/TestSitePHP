@@ -5,15 +5,21 @@ namespace App\Controllers;
 
 use App\Kernel\Controller\Controller;
 use App\Models\Product;
+use App\Models\ProductService;
 
 class CatalogController extends Controller
 {
-private Product $product;
+private ProductService $product;
 
     public function index()
     {
+$product=$this->service();
 
-        $this->view('catalog');
+
+       $this->view('catalog',[
+            'products'=>$product->all(),
+        ]);
+       
     }
   
     public function store(){
@@ -41,7 +47,7 @@ dd('Добавлен '.$name);
     }
     public function service(){
         if (! isset($this->product)){
-            $this->product=new Product($this->db());
+            $this->product=new ProductService($this->db());
         }
         return $this->product;
     }

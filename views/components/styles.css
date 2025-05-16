@@ -60,7 +60,7 @@ main {
     width: calc(33.333% - 20px);
     box-sizing: border-box;
     text-align: center;
-    height: auto;
+   
 }
 
 

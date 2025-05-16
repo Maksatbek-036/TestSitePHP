@@ -4,6 +4,8 @@ namespace App\Kernel\View;
 
 use App\Kernel\Auth\AuthInterface;
 use App\Kernel\Session\SessionInterface;
+use APP\Kernel\Storage\Storage;
+use App\Kernel\Storage\StorageInterface;
 use App\Kernel\View\ViewInterface;
 
 
@@ -12,6 +14,7 @@ class View implements ViewInterface
     public function __construct(
         private SessionInterface $session,
         private AuthInterface $auth,
+        private StorageInterface $storage
     ) {}
     public function page(string $name)
     {
@@ -34,6 +37,7 @@ extract($this->defaultData());
             'view' => $this,
             'session' => $this->session,
             'auth'=>$this->auth,
+            'storage'=>$this->storage
             
             ];
     }
